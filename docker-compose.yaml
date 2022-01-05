@@ -7,9 +7,9 @@ services:
     env_file:
       - ./flarum/flarum.env
     volumes:
-      - ./flarum/assets:/flarum/app/public/assets
-      - ./flarum/extensions:/flarum/app/extensions
-      - ./flarum/nginx:/etc/nginx/conf.d
+      - flarum-assets:/flarum/app/public/assets
+      - flarum-extensions:/flarum/app/extensions
+      - flarum-nginx:/etc/nginx/conf.d
     depends_on:
       - mariadb
     ports: 
@@ -24,4 +24,10 @@ services:
       - MYSQL_USER=flarum
       - MYSQL_PASSWORD=flarum@123
     volumes:
-      - ./mariadb/db:/var/lib/mysql
+      - mariadb-data:/var/lib/mysql
+
+volumes:
+  mariadb-data:
+  flarum-assets:
+  flarum-extensions:
+  flarum-nginx:
